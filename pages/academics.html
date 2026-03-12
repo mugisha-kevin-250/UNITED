@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - United Nursery and Primary School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #f87171; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: #f87171; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="home.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-bold">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">United School</h1>
+                        <p class="text-xs text-red-500">Musanze, Rwanda</p>
+                    </div>
+                </a>
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="home.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 px-3 py-2 font-medium">About Us</a>
+                    <a href="academics.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Programs</a>
+                    <a href="staff.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Facilities</a>
+                    <a href="news.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Gallery</a>
+                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Admissions</a>
+                    <a href="contact.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Contact</a>
+                </nav>
+                <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-2">
+                <a href="home.html" class="block py-2 text-gray-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700">About Us</a>
+                <a href="academics.html" class="block py-2 text-gray-700">Programs</a>
+                <a href="staff.html" class="block py-2 text-gray-700">Facilities</a>
+                <a href="news.html" class="block py-2 text-gray-700">Gallery</a>
+                <a href="admissions.html" class="block py-2 text-gray-700">Admissions</a>
+                <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-gray-900 to-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?w=1920&q=80" alt="Academics" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl font-bold text-white mb-4">Academics</h1>
+            <p class="text-gray-300 text-xl">Our curriculum and educational programs</p>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Nursery -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Nursery children" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <span class="text-red-500 font-semibold text-sm">Ages 3-5</span>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-2 mb-4">Nursery Education</h3>
+                        <p class="text-gray-600 mb-4">Our nursery program provides a nurturing environment where young children begin their educational journey. We focus on developing motor skills, social interaction, and early literacy.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Play-based learning</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Motor skill development</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Social skills building</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Early math & literacy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Primary -->
+                <div class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&q=80" alt="Primary children" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <span class="text-orange-500 font-semibold text-sm">Ages 6-12</span>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-2 mb-4">Primary Education</h3>
+                        <p class="text-gray-600 mb-4">Our primary program follows the Rwandan national curriculum, preparing students for secondary education while developing critical thinking and problem-solving skills.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li><i class="fas fa-check text-orange-500 mr-2"></i>Rwandan curriculum</li>
+                            <li><i class="fas fa-check text-orange-500 mr-2"></i>English medium instruction</li>
+                            <li><i class="fas fa-check text-orange-500 mr-2"></i>Science & math focus</li>
+                            <li><i class="fas fa-check text-orange-500 mr-2"></i>Character development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">What We Teach</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">Core Subjects</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-calculator text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Mathematics</h3>
+                    <p class="text-gray-600">From basic counting to advanced problem-solving, we build strong mathematical foundations.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-flask text-2xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Science</h3>
+                    <p class="text-gray-600">Hands-on experiments and exploration of the natural world.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-book text-2xl text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Language Arts</h3>
+                    <p class="text-gray-600">Reading, writing, speaking, and comprehension skills in English and Kinyarwanda.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-2xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Arts & Crafts</h3>
+                    <p class="text-gray-600">Creative expression through art, music, and手工 activities.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-running text-2xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Physical Education</h3>
+                    <p class="text-gray-600">Sports, games, and physical activities for healthy development.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-2xl text-indigo-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Social Studies</h3>
+                    <p class="text-gray-600">Geography, history, and civic education for well-rounded knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Program -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-red-500 font-semibold text-sm uppercase">Special Program</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">Nutrition Program</h2>
+                    <p class="text-gray-600 text-lg mb-4">We provide daily meals to all students as part of our commitment to holistic education. A well-fed child is better able to learn and thrive.</p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><i class="fas fa-utensils text-red-500 mr-3"></i>Balanced breakfast and lunch</li>
+                        <li><i class="fas fa-apple-alt text-red-500 mr-3"></i>Fresh fruits and vegetables</li>
+                        <li><i class="fas fa-glass-water text-red-500 mr-3"></i>Clean drinking water</li>
+                        <li><i class="fas fa-user-md text-red-500 mr-3"></i>Health monitoring</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&q=80" alt="Nutrition" class="rounded-2xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gray-900 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-white mb-6">Enroll Your Child</h2>
+            <p class="text-gray-300 mb-10 max-w-2xl mx-auto">Give your child the gift of quality education and nutrition.</p>
+            <a href="admissions.html" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all">
+                <i class="fas fa-user-plus mr-2"></i>Apply Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">United School</h3>
+                            <p class="text-gray-400 text-sm">Nursery & Primary</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Educating and nourishing the future of Rwanda.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="home.html" class="hover:text-red-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-red-400">About</a></li>
+                        <li><a href="academics.html" class="hover:text-red-400">Academics</a></li>
+                        <li><a href="admissions.html" class="hover:text-red-400">Admissions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Musanze, Rwanda</li>
+                        <li><i class="fas fa-phone mr-2"></i>+250 788 863 500</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@unitedschool.rw</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 United Nursery and Primary School. All rights reserved.</p>
+                <a href="admin.html" class="text-gray-500 hover:text-red-400 text-sm">Admin Login</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

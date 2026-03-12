@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: school-backend
+    env: node
+    buildCommand: cd united && npm install
+    startCommand: cd united && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false

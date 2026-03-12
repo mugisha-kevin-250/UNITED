@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff - United Nursery and Primary School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #f87171; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f87171; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="home.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-bold">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">United School</h1>
+                        <p class="text-xs text-red-500">Musanze, Rwanda</p>
+                    </div>
+                </a>
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="home.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 px-3 py-2 font-medium">About Us</a>
+                    <a href="academics.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Programs</a>
+                    <a href="staff.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Facilities</a>
+                    <a href="news.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Gallery</a>
+                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Admissions</a>
+                    <a href="contact.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Contact</a>
+                </nav>
+                <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-2">
+                <a href="home.html" class="block py-2 text-gray-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700">About Us</a>
+                <a href="academics.html" class="block py-2 text-gray-700">Programs</a>
+                <a href="staff.html" class="block py-2 text-gray-700">Facilities</a>
+                <a href="news.html" class="block py-2 text-gray-700">Gallery</a>
+                <a href="admissions.html" class="block py-2 text-gray-700">Admissions</a>
+                <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-16 bg-gradient-to-r from-gray-900 to-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?w=1920&q=80" alt="Staff" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl font-bold text-white mb-4">Our Staff</h1>
+            <p class="text-gray-300 text-xl">Dedicated educators committed to your child's success</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Our Facilities</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">School Facilities</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80" alt="Classroom" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Modern Classrooms</h3>
+                        <p class="text-gray-600">Well-equipped classrooms designed for effective learning.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=400&q=80" alt="Playground" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Playground</h3>
+                        <p class="text-gray-600">Safe outdoor spaces for children to play and exercise.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&q=80" alt="Library" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Library</h3>
+                        <p class="text-gray-600">A collection of books to foster reading habits.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                    <div class="w-32 h-32 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-tie text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Headmaster</h3>
+                    <p class="text-red-500 font-medium">Mr. John Musoni</p>
+                    <p class="text-gray-600 text-sm mt-2">15+ years experience in education</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                    <div class="w-32 h-32 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-graduate text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Deputy Head</h3>
+                    <p class="text-orange-500 font-medium">Mrs. Marie Uwimana</p>
+                    <p class="text-gray-600 text-sm mt-2">10+ years experience</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                    <div class="w-32 h-32 bg-gradient-to-br from-yellow-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chalkboard-teacher text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Academic Director</h3>
+                    <p class="text-yellow-600 font-medium">Mr. Patrick Nkurunziza</p>
+                    <p class="text-gray-600 text-sm mt-2">Curriculum specialist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Our Team</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">Teachers & Support Staff</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-2xl text-gray-500"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Teacher</h4>
+                    <p class="text-gray-500 text-sm">Nursery Section</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-2xl text-gray-500"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Teacher</h4>
+                    <p class="text-gray-500 text-sm">Primary Section</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-2xl text-gray-500"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Teacher</h4>
+                    <p class="text-gray-500 text-sm">Primary Section</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-2xl text-gray-500"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Cook</h4>
+                    <p class="text-gray-500 text-sm">Nutrition Program</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div><h3 class="font-bold text-white">United School</h3><p class="text-gray-400 text-sm">Nursery & Primary</p></div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Educating and nourishing the future of Rwanda.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="home.html" class="hover:text-red-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-red-400">About</a></li>
+                        <li><a href="academics.html" class="hover:text-red-400">Academics</a></li>
+                        <li><a href="admissions.html" class="hover:text-red-400">Admissions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Musanze, Rwanda</li>
+                        <li><i class="fas fa-phone mr-2"></i>+250 788 863 500</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@unitedschool.rw</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 United Nursery and Primary School. All rights reserved.</p>
+                <a href="admin.html" class="text-gray-500 hover:text-red-400 text-sm">Admin Login</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

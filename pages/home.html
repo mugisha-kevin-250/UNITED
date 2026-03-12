@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Nursery and Primary School - Musanze, Rwanda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-text { background: linear-gradient(to right, #f87171, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #f87171; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f87171; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="home.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-bold">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div><h1 class="text-lg font-bold text-gray-800">United School</h1></div>
+                </a>
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="home.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 px-3 py-2 font-medium">About Us</a>
+                    <a href="academics.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Programs</a>
+                    <a href="staff.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Facilities</a>
+                    <a href="news.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Gallery</a>
+                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Admissions</a>
+                    <a href="contact.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Contact</a>
+                    <a href="chat.html" class="nav-link text-red-500 px-3 py-2 font-medium"><i class="fas fa-comments mr-1"></i>Chat</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <a href="admissions.html" class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 hidden md:block">Apply Now</a>
+                    <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-2">
+                <a href="home.html" class="block py-2 text-gray-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700">About Us</a>
+                <a href="academics.html" class="block py-2 text-gray-700">Programs</a>
+                <a href="staff.html" class="block py-2 text-gray-700">Facilities</a>
+                <a href="news.html" class="block py-2 text-gray-700">Gallery</a>
+                <a href="admissions.html" class="block py-2 text-gray-700">Admissions</a>
+                <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
+                <a href="admissions.html" class="block py-2 text-red-500 font-medium">Apply Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+        <canvas id="three-canvas" class="absolute inset-0 z-0"></canvas>
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?w=1920&q=80" alt="Happy children learning" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="inline-block bg-red-500/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
+                <span class="text-white text-sm"><i class="fas fa-heart mr-2 text-red-400"></i>Happy children learning at United School in Musanze</span>
+            </div>
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+                Welcome to United Nursery<br>& Primary School
+            </h1>
+            <p id="hero-subtitle" class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Nurturing Young Minds for a Bright Future in Musanze District.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="admissions.html" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all transform hover:scale-105">
+                    <i class="fas fa-user-plus mr-2"></i>Apply for Admission
+                </a>
+                <a href="about.html" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition-all">
+                    <i class="fas fa-play-circle mr-2"></i>Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-10 bg-gradient-to-r from-red-500 to-orange-500">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-4">
+                <span class="text-white text-lg font-medium">Admissions Open for 2026</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+                <div>
+                    <div id="stat-students" class="text-4xl md:text-5xl font-bold">15+</div>
+                    <div class="text-white/80">Years of Excellence</div>
+                </div>
+                <div>
+                    <div id="stat-teachers" class="text-4xl md:text-5xl font-bold">500+</div>
+                    <div class="text-white/80">Students</div>
+                </div>
+                <div>
+                    <div id="stat-meals" class="text-4xl md:text-5xl font-bold">25+</div>
+                    <div class="text-white/80">Teachers</div>
+                </div>
+                <div>
+                    <div id="stat-years" class="text-4xl md:text-5xl font-bold">1000+</div>
+                    <div class="text-white/80">Meals/Month</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-red-500 font-semibold text-sm uppercase">About Us</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">Building Bright Futures in Musanze</h2>
+                    <p class="text-gray-600 text-lg mb-6">United School is a leading educational institution in Musanze District, Rwanda. Set among the beautiful Virunga hills, we provide quality early childhood and primary education focused on creativity, discipline, and knowledge.</p>
+                    <a href="about.html" class="text-red-500 font-medium hover:text-red-600">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="Nursery children learning" class="rounded-2xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Why Choose Us</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">The United School Difference</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/8617546/pexels-photo-8617546.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nutrition Program" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-utensils text-green-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Nutrition Program</h3>
+                        <p class="text-gray-600">Every child receives nutritious meals daily, ensuring they are well-fed and ready to learn.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/5428267/pexels-photo-5428267.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Quality Education" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-globe text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Quality Education</h3>
+                        <p class="text-gray-600">Comprehensive curriculum covering languages, mathematics, science, and technology.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/5212703/pexels-photo-5212703.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Experienced Teachers" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chalkboard-teacher text-purple-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Experienced Teachers</h3>
+                        <p class="text-gray-600">Certified educators passionate about nurturing young minds and fostering growth.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/5428155/pexels-photo-5428155.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Interactive Learning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-hands-helping text-orange-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Interactive Learning</h3>
+                        <p class="text-gray-600">Engaging classroom activities that promote participation and collaboration.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/5212354/pexels-photo-5212354.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Individual Attention" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-heart text-pink-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Individual Attention</h3>
+                        <p class="text-gray-600">Low student-teacher ratio ensures each child gets personalized support.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                    <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Safe Environment" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Safe Environment</h3>
+                        <p class="text-gray-600">Secure campus with caring staff who prioritize child safety and wellbeing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Our Programs</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">A Complete Learning Journey</h2>
+                <p class="text-gray-600 mt-4">From nursery to primary six, we provide holistic education that prepares children for life.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 p-8 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-baby text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Nursery School</h3>
+                            <p class="text-gray-500">Ages 3–6</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">A joyful, play-based environment where young learners explore, create, and grow through guided activities.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Early learning & development</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Play-based education</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Creativity & social skills</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Cognitive development</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-book text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Primary School</h3>
+                            <p class="text-gray-500">P1–P6</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">A rigorous curriculum covering languages, mathematics, science, and technology to prepare children for the future.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Strong academic foundation</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Reading & Mathematics</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Science exploration</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>ICT introduction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Gallery</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">Life at United School</h2>
+                <p class="text-gray-600 mt-4">A glimpse into the happy, vibrant learning environment we create every day.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Happy nursery children" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&q=80" alt="Children playing" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="School campus" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&q=80" alt="Children learning" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80" alt="Kids in class" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?w=600&q=80" alt="Happy child" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <span class="text-red-500 font-semibold text-sm uppercase">Latest News</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mt-2">News & Announcements</h2>
+                </div>
+                <a href="news.html" class="text-red-500 hover:text-red-600 font-medium">View All <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+            <div id="news-container" class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80" alt="News" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-red-500 text-sm">Loading...</span>
+                        <h3 class="text-lg font-bold text-gray-800 mt-2">News from Database</h3>
+                        <p class="text-gray-500 mt-2">Loading news...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase">Testimonials</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">What Parents Say</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mr-3">MC</div>
+                        <div><h4 class="font-bold text-gray-800">Marie Claire U.</h4><p class="text-gray-500 text-sm">Parent of P3 Student</p></div>
+                    </div>
+                    <p class="text-gray-600">"United School has transformed my daughter's confidence. She loves going to school every day and comes home excited about what she learned."</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold mr-3">JN</div>
+                        <div><h4 class="font-bold text-gray-800">Jean Baptiste N.</h4><p class="text-gray-500 text-sm">Parent of Nursery Student</p></div>
+                    </div>
+                    <p class="text-gray-600">"The teachers are so caring and dedicated. I feel completely at ease knowing my son is in safe hands. The school environment is wonderful."</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold mr-3">AM</div>
+                        <div><h4 class="font-bold text-gray-800">Ange M.</h4><p class="text-gray-500 text-sm">Parent of P5 Student</p></div>
+                    </div>
+                    <p class="text-gray-600">"My children have excelled academically since joining United School. The discipline and modern teaching methods really make a difference."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gray-900 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-white mb-6">Start Your Child's Journey With Us</h2>
+            <p class="text-gray-300 mb-10 max-w-2xl mx-auto">Give your child the best start in life. Join the United School family today and watch them thrive.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="admissions.html" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all">
+                    <i class="fas fa-user-plus mr-2"></i>Apply for Admission
+                </a>
+                <a href="contact.html" class="border-2 border-red-500 text-red-500 px-8 py-4 rounded-full font-semibold hover:bg-red-500 hover:text-white transition-all">
+                    <i class="fas fa-envelope mr-2"></i>Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div><h3 class="font-bold text-white">United School</h3></div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Nurturing young minds for a bright future in Musanze District, Rwanda.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="home.html" class="hover:text-red-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-red-400">About Us</a></li>
+                        <li><a href="academics.html" class="hover:text-red-400">Programs</a></li>
+                        <li><a href="admissions.html" class="hover:text-red-400">Admissions</a></li>
+                        <li><a href="contact.html" class="hover:text-red-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Musanze District, Rwanda</li>
+                        <li><i class="fas fa-phone mr-2"></i>+250 788 000 000</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@unitedschool.rw</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2026 United Nursery and Primary School, Musanze, Rwanda. All rights reserved.</p>
+                <a href="admin.html" class="text-gray-500 hover:text-red-400 text-sm">Admin Login</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Three.js Animation - Floating particles
+        const canvas = document.getElementById('three-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const particleCount = 60;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
+                }
+
+                draw() {
+                    ctx.fillStyle = `rgba(248, 113, 113, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                particles.forEach((p1, i) => {
+                    particles.slice(i + 1).forEach(p2 => {
+                        const dx = p1.x - p2.x;
+                        const dy = p1.y - p2.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 150) {
+                            ctx.strokeStyle = `rgba(248, 113, 113, ${0.08 * (1 - distance / 150)})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    });
+                });
+
+                requestAnimationFrame(animateParticles);
+            }
+
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        
+        const API_BASE = 'http://localhost:5000/api';
+        
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        async function loadPageContent() {
+            try {
+                const res = await fetch(API_BASE + '/it/page-content?page=Home');
+                const data = await res.json();
+                if (data.success && data.data) {
+                    data.data.forEach(item => {
+                        if (item.section === 'hero') {
+                            if (item.title) document.getElementById('hero-title').innerHTML = item.title + '<br><span class="gradient-text">The Future of Rwanda</span>';
+                            if (item.subtitle) document.getElementById('hero-subtitle').innerText = item.subtitle;
+                            else if (item.content) document.getElementById('hero-subtitle').innerText = item.content;
+                        }
+                        if (item.section === 'stats') {
+                            if (item.students) document.getElementById('stat-students').innerText = item.students + '+';
+                            if (item.teachers) document.getElementById('stat-teachers').innerText = item.teachers + '+';
+                            if (item.meals) document.getElementById('stat-meals').innerText = item.meals + '+';
+                            if (item.years) document.getElementById('stat-years').innerText = item.years + '+';
+                        }
+                    });
+                }
+            } catch (e) { console.log('Error loading content:', e); }
+        }
+        
+        async function loadNews() {
+            try {
+                const response = await fetch(API_BASE + '/news');
+                const result = await response.json();
+                if (result.success && result.data && result.data.length > 0) {
+                    const newsContainer = document.getElementById('news-container');
+                    let newsHTML = '';
+                    result.data.slice(0, 3).forEach(news => {
+                        const date = new Date(news.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                        const imageUrl = news.image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80';
+                        newsHTML += `
+                            <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                                <img src="${imageUrl}" alt="${news.title}" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <span class="text-red-500 text-sm">${date}</span>
+                                    <h3 class="text-lg font-bold text-gray-800 mt-2">${news.title}</h3>
+                                    <p class="text-gray-500 mt-2">${news.content ? news.content.substring(0, 100) + '...' : 'Click to read more...'}</p>
+                                    <a href="news.html" class="inline-block mt-4 text-red-500 font-medium hover:text-red-600">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    newsContainer.innerHTML = newsHTML;
+                }
+            } catch (err) { console.log('News loading error:', err); }
+        }
+        
+        loadPageContent();
+        loadNews();
+    </script>
+</body>
+</html>

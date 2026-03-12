@@ -1,0 +1,21 @@
+{
+  "name": "united-backend",
+  "version": "1.0.0",
+  "description": "Backend for United Nursery and Primary School",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "mongoose": "^7.8.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
