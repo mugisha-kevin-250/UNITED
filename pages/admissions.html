@@ -928,7 +928,7 @@
             closeApplicationModal();
         }
 
-        // Check Application Status
+        // Check Application Status - using localStorage for GitHub Pages
         async function checkApplicationStatus() {
             const email = document.getElementById('track-email').value.trim();
             const phone = document.getElementById('track-phone').value.trim();
@@ -939,22 +939,20 @@
             }
             
             try {
-                const response = await fetch('http://localhost:5000/api/admissions');
-                const result = await response.json();
+                // Get applications from localStorage
+                const applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
                 
-                if (result.success) {
-                    // Find matching application
-                    const application = result.data.find(app => 
-                        app.parentEmail.toLowerCase() === email.toLowerCase() && 
-                        app.parentPhone.includes(phone)
-                    );
-                    
-                    if (application) {
-                        displayApplicationStatus(application);
-                    } else {
-                        alert('No application found with these details. Please check your email and phone number.');
-                        document.getElementById('status-result').classList.add('hidden');
-                    }
+                // Find matching application
+                const application = applications.find(app => 
+                    app.parentEmail && app.parentEmail.toLowerCase() === email.toLowerCase() && 
+                    app.parentPhone && app.parentPhone.includes(phone)
+                );
+                
+                if (application) {
+                    displayApplicationStatus(application);
+                } else {
+                    alert('No application found with these details. Please check your email and phone number.');
+                    document.getElementById('status-result').classList.add('hidden');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -1007,30 +1005,26 @@
             statusResult.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Form submission
+        // Form submission - using localStorage for GitHub Pages
         document.getElementById('application-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
             
+            // Add metadata
+            data.createdAt = new Date().toISOString();
+            data.status = 'pending';
+            data.applicationId = 'APP-' + Date.now();
+            
             try {
-                const response = await fetch('http://localhost:5000/api/admissions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+                // Get existing applications from localStorage
+                let applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
+                applications.push(data);
+                localStorage.setItem('schoolApplications', JSON.stringify(applications));
                 
-                const result = await response.json();
-                
-                if (result.success) {
-                    this.reset();
-                    document.getElementById('success-modal').classList.remove('hidden');
-                } else {
-                    alert('Error: ' + result.msg);
-                }
+                this.reset();
+                document.getElementById('success-modal').classList.remove('hidden');
             } catch (error) {
                 console.error('Error:', error);
                 alert('Something went wrong. Please try again.');
