@@ -9,22 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
+        .gradient-text { background: linear-gradient(to right, #f87171, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #f87171; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: #f87171; transition: width 0.3s ease;
-        }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f87171; transition: width 0.3s ease; }
         .nav-link:hover::after { width: 100%; }
         
-        /* Three.js Animation Container */
         #three-canvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: 1;
         }
         
@@ -33,39 +29,10 @@
             z-index: 10;
         }
         
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
-        
-        /* Animated gradient text */
-        .gradient-text {
-            background: linear-gradient(45deg, #f87171, #fb923c, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease infinite;
-        }
-        
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Fade in animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
         
         .fade-in.visible {
@@ -73,30 +40,26 @@
             transform: translateY(0);
         }
         
-        /* Card hover effect */
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
         }
         
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(248, 113, 113, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(248, 113, 113, 0.8); }
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <a href="home.html" class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-bold">
-                        <i class="fas fa-graduation-cap text-xl"></i>
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-bold">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-800">United School</h1>
-                        <p class="text-xs text-red-500">Musanze, Rwanda</p>
-                    </div>
+                    <div><h1 class="text-lg font-bold text-gray-800">United School</h1></div>
                 </a>
                 <nav class="hidden md:flex items-center space-x-1">
                     <a href="home.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Home</a>
@@ -104,14 +67,13 @@
                     <a href="academics.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Programs</a>
                     <a href="staff.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Facilities</a>
                     <a href="news.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Gallery</a>
-                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-2 font-medium text-red-500">Admissions</a>
-                    <a href="#track" class="nav-link text-gray-700 px-3 py-2 font-medium">Track</a>
+                    <a href="admissions.html" class="nav-link text-red-500 px-3 py-2 font-medium">Admissions</a>
                     <a href="contact.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Contact</a>
+                    <a href="chat.html" class="nav-link text-red-500 px-3 py-2 font-medium"><i class="fas fa-comments mr-1"></i>Chat</a>
                 </nav>
                 <div class="flex items-center gap-3">
-                    <a href="#track" class="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-orange-600 hidden md:block">Track</a>
                     <a href="#apply" class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 hidden md:block">Apply Now</a>
-                    <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars text-xl"></i></button>
+                    <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars"></i></button>
                 </div>
             </div>
         </div>
@@ -122,471 +84,264 @@
                 <a href="academics.html" class="block py-2 text-gray-700">Programs</a>
                 <a href="staff.html" class="block py-2 text-gray-700">Facilities</a>
                 <a href="news.html" class="block py-2 text-gray-700">Gallery</a>
-                <a href="admissions.html" class="block py-2 text-gray-700">Admissions</a>
-                <a href="#track" class="block py-2 text-gray-700">Track Application</a>
+                <a href="admissions.html" class="block py-2 text-red-500 font-medium">Admissions</a>
                 <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
                 <a href="#apply" class="block py-2 text-red-500 font-medium">Apply Now</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section with Three.js Background -->
-    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Hero Section with Three.js -->
+    <section class="min-h-[80vh] flex items-center justify-center pt-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
         <canvas id="three-canvas"></canvas>
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-gray-900/90"></div>
-        <div class="absolute inset-0 opacity-40">
-            <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?w=1920&q=80" alt="Girl writing" class="w-full h-full object-cover">
+        <div class="absolute inset-0 opacity-30">
+            <img src="https://images.pexels.com/photos/256468/pexels-photo-256468.jpeg?w=1920&q=80" alt="Children learning" class="w-full h-full object-cover">
         </div>
         <div class="hero-content container mx-auto px-4 text-center">
             <div class="inline-block bg-red-500/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
-                <span class="text-white text-sm"><i class="fas fa-rocket mr-2 text-red-400"></i>Admissions Open for Academic Year 2026</span>
+                <span class="text-white text-sm"><i class="fas fa-rocket mr-2 text-red-400"></i>Admissions Open for 2026</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 Join Our <span class="gradient-text">Learning Family</span>
             </h1>
-            <p class="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-                Give your child the best start in life. Enroll at United Nursery and Primary School where excellence meets nurturing care.
+            <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Enroll your child at United Nursery and Primary School. Give them the best start in life with quality education and nurturing care.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#apply" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg">
+                <a href="#apply" class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all transform hover:scale-105 pulse-glow">
                     <i class="fas fa-user-plus mr-2"></i>Apply Now
                 </a>
-                <a href="#requirements" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition-all">
-                    <i class="fas fa-clipboard-list mr-2"></i>Requirements
+                <a href="#track" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition-all">
+                    <i class="fas fa-search mr-2"></i>Track Application
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-8 bg-gradient-to-r from-red-500 to-orange-500">
+    <section class="py-10 bg-gradient-to-r from-red-500 to-orange-500">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
                 <div>
-                    <div class="text-3xl md:text-4xl font-bold">15+</div>
+                    <div class="text-4xl md:text-5xl font-bold">15+</div>
                     <div class="text-white/80">Years Excellence</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-bold">500+</div>
+                    <div class="text-4xl md:text-5xl font-bold">500+</div>
                     <div class="text-white/80">Students</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-bold">30+</div>
+                    <div class="text-4xl md:text-5xl font-bold">30+</div>
                     <div class="text-white/80">Teachers</div>
                 </div>
                 <div>
-                    <div class="text-3xl md:text-4xl font-bold">100%</div>
+                    <div class="text-4xl md:text-5xl font-bold">100%</div>
                     <div class="text-white/80">Pass Rate</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Welcome Message -->
-    <section class="py-20 bg-white" id="welcome">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Welcome</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">Welcome to United School Admissions</h2>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    At United Nursery and Primary School, we believe every child deserves an exceptional education in a supportive and stimulating environment. Our admissions process is designed to get to know your child and family better. We invite you to explore our programs and discover why United School is the perfect choice for your child's educational journey.
-                </p>
-                <div class="mt-8 grid md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-gray-50 rounded-xl card-hover">
-                        <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-heart text-red-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Nurturing Care</h3>
-                        <p class="text-gray-600 text-sm">We provide a loving environment where every child feels valued</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-xl card-hover">
-                        <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-graduation-cap text-orange-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Academic Excellence</h3>
-                        <p class="text-gray-600 text-sm">Our curriculum prepares students for future success</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-xl card-hover">
-                        <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-star text-pink-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Holistic Development</h3>
-                        <p class="text-gray-600 text-sm">We focus on intellectual, social, and emotional growth</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About the School -->
-    <section class="py-20 bg-gray-50" id="about">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">About Our School</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2 mb-6">Building Brighter Futures</h2>
-                    <p class="text-gray-600 mb-6">
-                        United Nursery and Primary School is a leading educational institution located in Musanze, Rwanda. Since our founding, we have been committed to providing world-class education that combines academic rigor with character development.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-check text-red-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">State-of-the-Art Facilities</h4>
-                                <p class="text-gray-600 text-sm">Modern classrooms, libraries, and play areas</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-check text-red-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Experienced Teachers</h4>
-                                <p class="text-gray-600 text-sm">Qualified educators passionate about teaching</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-check text-red-500"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Child-Centered Approach</h4>
-                                <p class="text-gray-600 text-sm">Individual attention and personalized learning</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80" alt="Students learning" class="rounded-xl shadow-lg float-animation" style="animation-delay: 0s;">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80" alt="Children playing" class="rounded-xl shadow-lg float-animation" style="animation-delay: 0.5s; margin-top: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=400&q=80" alt="Classroom" class="rounded-xl shadow-lg float-animation" style="animation-delay: 1s;">
-                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&q=80" alt="Happy children" class="rounded-xl shadow-lg float-animation" style="animation-delay: 1.5s; margin-top: 2rem;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Admission Requirements -->
-    <section class="py-20 bg-white" id="requirements">
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white" id="why">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">How to Join</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2">Admission Requirements</h2>
+                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">Give Your Child the Best Start</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Nursery -->
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl card-hover">
-                    <div class="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-baby text-white text-2xl"></i>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center hover:shadow-xl transition-shadow fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-red-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Nursery (Play Group - P3)</h3>
-                    <p class="text-gray-600 mb-4">Ages 3-5 years</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Birth Certificate (original or certified copy)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Parent/Guardian ID</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">2 Passport Photos</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Medical Records</span>
-                        </li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Nurturing Environment</h3>
+                    <p class="text-gray-600">We provide a loving, safe environment where every child feels valued and supported.</p>
                 </div>
-                
-                <!-- Primary -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover">
-                    <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-book-open text-white text-2xl"></i>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center hover:shadow-xl transition-shadow fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-orange-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Primary (P1 - P6)</h3>
-                    <p class="text-gray-600 mb-4">Ages 6-12 years</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Birth Certificate</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Previous School Reports</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Transfer Certificate</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Parent/Guardian ID</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">4 Passport Photos</span>
-                        </li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quality Education</h3>
+                    <p class="text-gray-600">Our curriculum is designed to develop critical thinking, creativity, and academic excellence.</p>
                 </div>
-                
-                <!-- Documents -->
-                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl card-hover">
-                    <div class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-folder-open text-white text-2xl"></i>
+                <div class="bg-gray-50 p-8 rounded-2xl text-center hover:shadow-xl transition-shadow fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-utensils text-green-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Additional Documents</h3>
-                    <p class="text-gray-600 mb-4">For all applicants</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Proof of Residence</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Recent Medical Certificate</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Emergency Contact Info</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-circle text-purple-500 text-xs mt-2 mr-3"></i>
-                            <span class="text-gray-600">Passport-size Photos</span>
-                        </li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Nutrition Program</h3>
+                    <p class="text-gray-600">Free nutritious meals provided to ensure children are well-fed and ready to learn.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Application Process -->
-    <section class="py-20 bg-gray-50" id="process">
+    <!-- Requirements -->
+    <section class="py-20 bg-gray-50" id="requirements">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Step by Step</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2">Application Process</h2>
-            </div>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-                        <span class="text-white text-2xl font-bold">1</span>
-                        <div class="absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-gray-50 rounded-full hidden md:block"></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Submit Application</h3>
-                    <p class="text-gray-600">Fill out the online application form with your child's details</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-                        <span class="text-white text-2xl font-bold">2</span>
-                        <div class="absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-gray-50 rounded-full hidden md:block"></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Document Review</h3>
-                    <p class="text-gray-600">Our team will review all submitted documents</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-                        <span class="text-white text-2xl font-bold">3</span>
-                        <div class="absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-gray-50 rounded-full hidden md:block"></div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Assessment</h3>
-                    <p class="text-gray-600">Schedule a visit and meet our teachers</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-white text-2xl font-bold">4</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Enrollment</h3>
-                    <p class="text-gray-600">Receive confirmation and complete enrollment</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Important Dates -->
-    <section class="py-20 bg-white" id="dates">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Mark Your Calendar</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Important Dates</h2>
-                </div>
-                <div class="space-y-4">
-                    <div class="flex items-center p-6 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl">
-                        <div class="w-20 h-20 bg-red-500 rounded-lg flex flex-col items-center justify-center mr-6">
-                            <span class="text-white font-bold text-lg">MAR</span>
-                            <span class="text-white text-xl font-bold">15</span>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-gray-800">Application Opens</h3>
-                            <p class="text-gray-600">Online admission forms become available</p>
-                        </div>
-                        <span class="bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-medium">Upcoming</span>
-                    </div>
-                    <div class="flex items-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
-                        <div class="w-20 h-20 bg-blue-500 rounded-lg flex flex-col items-center justify-center mr-6">
-                            <span class="text-white font-bold text-lg">MAY</span>
-                            <span class="text-white text-xl font-bold">01</span>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-gray-800">Early Bird Deadline</h3>
-                            <p class="text-gray-600">Last date for early application discount</p>
-                        </div>
-                        <span class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-medium">Deadline</span>
-                    </div>
-                    <div class="flex items-center p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl">
-                        <div class="w-20 h-20 bg-green-500 rounded-lg flex flex-col items-center justify-center mr-6">
-                            <span class="text-white font-bold text-lg">JUN</span>
-                            <span class="text-white text-xl font-bold">15</span>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-gray-800">Assessment Dates</h3>
-                            <p class="text-gray-600">Student assessments and parent interviews</p>
-                        </div>
-                        <span class="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-medium">Assessment</span>
-                    </div>
-                    <div class="flex items-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
-                        <div class="w-20 h-20 bg-purple-500 rounded-lg flex flex-col items-center justify-center mr-6">
-                            <span class="text-white font-bold text-lg">JUL</span>
-                            <span class="text-white text-xl font-bold">01</span>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-gray-800">Results & Enrollment</h3>
-                            <p class="text-gray-600">Admission results and fee payment deadline</p>
-                        </div>
-                        <span class="bg-purple-100 text-purple-600 px-4 py-1 rounded-full text-sm font-medium">Results</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fees & Financial Aid -->
-    <section class="py-20 bg-gray-50" id="fees">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Investment</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2">Fees & Financial Information</h2>
+                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Requirements</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">What You Need to Apply</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Tuition Fees</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Nursery (Play Group - P3)</span>
-                            <span class="text-xl font-bold text-red-500">Frw 150,000</span>
-                            <span class="text-gray-500 text-sm">/year</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Primary (P1 - P3)</span>
-                            <span class="text-xl font-bold text-red-500">Frw 180,000</span>
-                            <span class="text-gray-500 text-sm">/year</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Primary (P4 - P6)</span>
-                            <span class="text-xl font-bold text-red-500">Frw 200,000</span>
-                            <span class="text-gray-500 text-sm">/year</span>
-                        </div>
-                    </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg fade-in">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-child mr-2 text-red-500"></i>For Students</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Birth certificate (copy)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Previous school records (if applicable)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Recent passport photo</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Vaccination records</li>
+                    </ul>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Additional Costs</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Registration Fee</span>
-                            <span class="text-xl font-bold text-gray-800">Frw 25,000</span>
-                            <span class="text-gray-500 text-sm">one-time</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Uniform (Full Set)</span>
-                            <span class="text-xl font-bold text-gray-800">Frw 35,000</span>
-                            <span class="text-gray-500 text-sm"></span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <span class="font-medium text-gray-700">Books & Materials</span>
-                            <span class="text-xl font-bold text-gray-800">Frw 30,000</span>
-                            <span class="text-gray-500 text-sm">/year</span>
-                        </div>
-                    </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg fade-in">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-user mr-2 text-orange-500"></i>For Parents</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>National ID or passport</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Proof of residence</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Contact phone number</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Email address</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="text-center mt-8">
-                <p class="text-gray-600">Need financial assistance? <a href="contact.html" class="text-red-500 font-medium hover:underline">Contact us</a> to discuss payment plans and scholarships.</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="py-20 bg-white" id="faq">
+    <!-- Programs -->
+    <section class="py-20 bg-white" id="programs">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Questions</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-2">Frequently Asked Questions</h2>
+                <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Our Programs</span>
+                <h2 class="text-4xl font-bold text-gray-800 mt-2">Classes We Offer</h2>
             </div>
-            <div class="max-w-3xl mx-auto space-y-4">
-                <div class="bg-gray-50 rounded-xl overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-6 flex items-center justify-between" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-800">What is the student-teacher ratio?</span>
-                        <i class="fas fa-chevron-down text-red-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">We maintain a low student-teacher ratio of 15:1 in nursery and 20:1 in primary classes to ensure individual attention for each student.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-2xl fade-in">
+                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-baby text-white text-xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nursery</h3>
+                    <p class="text-gray-600 mb-4">Play Group, Nursery 1 & 2 for ages 3-5 years</p>
+                    <span class="text-sm text-red-500 font-medium">Ages 3-5</span>
                 </div>
-                <div class="bg-gray-50 rounded-xl overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-6 flex items-center justify-between" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-800">Do you provide transportation?</span>
-                        <i class="fas fa-chevron-down text-red-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">Yes, we offer transportation services for students within Musanze district. Contact us for routes and fees.</p>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl fade-in">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-school text-white text-xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Primary</h3>
+                    <p class="text-gray-600 mb-4">P1 through P6 for ages 6-12 years</p>
+                    <span class="text-sm text-blue-500 font-medium">Ages 6-12</span>
                 </div>
-                <div class="bg-gray-50 rounded-xl overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-6 flex items-center justify-between" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-800">What curriculum do you follow?</span>
-                        <i class="fas fa-chevron-down text-red-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">We follow the Rwandan National Curriculum enhanced with international teaching methodologies and additional enrichment programs.</p>
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-2xl fade-in">
+                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-white text-xl"></i>
                     </div>
-                </div>
-                <div class="bg-gray-50 rounded-xl overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-6 flex items-center justify-between" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-800">Are meals provided?</span>
-                        <i class="fas fa-chevron-down text-red-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">Yes, nutritious lunch and snacks are provided as part of the school day. We accommodate dietary requirements and preferences.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-50 rounded-xl overflow-hidden">
-                    <button class="faq-toggle w-full text-left p-6 flex items-center justify-between" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-800">What are school hours?</span>
-                        <i class="fas fa-chevron-down text-red-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">School runs from 7:30 AM to 4:00 PM, Monday to Friday. Early drop-off available from 7:00 AM.</p>
-                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Day Care</h3>
+                    <p class="text-gray-600 mb-4">Full-day care for working parents</p>
+                    <span class="text-sm text-green-500 font-medium">All Ages</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Application Status Tracking Portal -->
-    <section class="py-20 bg-gradient-to-br from-red-50 to-orange-50" id="track">
+    <!-- Application Form -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800" id="apply">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-red-400 font-semibold text-sm uppercase tracking-wider">Apply Now</span>
+                <h2 class="text-4xl font-bold text-white mt-2">Student Admission Form</h2>
+                <p class="text-gray-300 mt-4">Fill out the form below to apply for admission</p>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8">
+                <form id="application-form" class="space-y-6">
+                    <div class="bg-red-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-child mr-2 text-red-500"></i>Student Information</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Full Name *</label>
+                                <input type="text" name="studentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Student's full name">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Date of Birth *</label>
+                                <input type="date" name="dateOfBirth" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Gender *</label>
+                                <select name="gender" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Grade *</label>
+                                <select name="grade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                                    <option value="">Select Grade</option>
+                                    <option value="Play Group">Play Group</option>
+                                    <option value="Nursery 1">Nursery 1</option>
+                                    <option value="Nursery 2">Nursery 2</option>
+                                    <option value="P1">Primary 1</option>
+                                    <option value="P2">Primary 2</option>
+                                    <option value="P3">Primary 3</option>
+                                    <option value="P4">Primary 4</option>
+                                    <option value="P5">Primary 5</option>
+                                    <option value="P6">Primary 6</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-orange-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-user mr-2 text-orange-500"></i>Parent Information</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Parent Name *</label>
+                                <input type="text" name="parentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Parent's full name">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Phone *</label>
+                                <input type="tel" name="parentPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="+250 XXX XXX XXX">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-medium mb-2">Email *</label>
+                                <input type="email" name="parentEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="email@example.com">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-home mr-2 text-blue-500"></i>Address</h3>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">District *</label>
+                            <select name="district" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select District</option>
+                                <option value="Musanze">Musanze</option>
+                                <option value="Rubavu">Rubavu</option>
+                                <option value="Nyabihu">Nyabihu</option>
+                                <option value="Rutsiro">Rutsiro</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" required class="mt-1 mr-3">
+                        <label for="terms" class="text-gray-600 text-sm">I confirm that all information provided is accurate and I agree to the school's terms and conditions.</label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-red-500 text-white py-4 rounded-xl font-semibold hover:bg-red-600 transition-all">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit Application
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    <!-- Track Application -->
+    <section class="py-20 bg-gray-50" id="track">
         <div class="container mx-auto px-4">
             <div class="max-w-2xl mx-auto">
                 <div class="text-center mb-12">
-                    <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Track Your Application</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Check Application Status</h2>
-                    <p class="text-gray-600 mt-4">Enter your email and phone number to check the status of your application</p>
+                    <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Track Application</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Check Your Status</h2>
+                    <p class="text-gray-600 mt-4">Enter your email and phone to check your application status</p>
                 </div>
-                
                 <div class="bg-white rounded-2xl shadow-xl p-8">
                     <div class="grid md:grid-cols-2 gap-4 mb-6">
                         <div>
@@ -602,8 +357,7 @@
                         <i class="fas fa-search mr-2"></i>Check Status
                     </button>
                 </div>
-
-                <!-- Status Result -->
+                
                 <div id="status-result" class="hidden mt-8">
                     <div class="bg-white rounded-2xl shadow-xl p-8">
                         <div class="text-center mb-6">
@@ -627,268 +381,52 @@
                                 <span class="text-gray-600">Status:</span>
                                 <span class="font-semibold" id="status-badge"></span>
                             </div>
-                            <div id="admin-notes-section" class="hidden mt-4 p-4 bg-yellow-50 rounded-lg">
-                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-sticky-note mr-2 text-yellow-500"></i>Admin Notes:</h4>
-                                <p class="text-gray-700" id="status-notes"></p>
-                            </div>
-                            <div id="rejection-reason-section" class="hidden mt-4 p-4 bg-red-50 rounded-lg">
-                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-exclamation-circle mr-2 text-red-500"></i>Rejection Reason:</h4>
-                                <p class="text-gray-700" id="status-reason"></p>
-                            </div>
                         </div>
                     </div>
-                </div>
-
-                <p class="text-center text-gray-500 mt-6">Need help? <a href="#contact" class="text-red-500 hover:underline">Contact us</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Information -->
-    <section class="py-20 bg-gray-50" id="contact">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-red-500 font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
-                    <h2 class="text-4xl font-bold text-gray-800 mt-2">Contact Information</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-map-marker-alt text-red-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Location</h3>
-                        <p class="text-gray-600">Musanze District<br>Rwanda</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-phone text-orange-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Phone</h3>
-                        <p class="text-gray-600">+250 788 123 456<br>+250 788 987 654</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-                        <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-envelope text-pink-500 text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Email</h3>
-                        <p class="text-gray-600">admissions@unitedschool.rw<br>info@unitedschool.rw</p>
-                    </div>
-                </div>
-                <div class="mt-12 text-center">
-                    <p class="text-gray-600 mb-4">Office Hours: Monday - Friday, 7:30 AM - 5:00 PM</p>
-                    <a href="contact.html" class="inline-block bg-red-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-600 transition-all">
-                        <i class="fas fa-envelope mr-2"></i>Send us a Message
-                    </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Apply Now Section -->
-    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800" id="apply">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-4">Ready to Apply?</h2>
-                <p class="text-gray-300 text-lg mb-8">Take the first step towards your child's bright future. Click below to start the application process.</p>
-                <button onclick="openApplicationModal()" class="bg-red-500 text-white px-12 py-4 rounded-full font-semibold text-lg hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-user-plus mr-2"></i>Start Application
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Application Modal -->
-    <div id="application-modal" class="fixed inset-0 bg-black/50 z-50 hidden overflow-y-auto">
-        <div class="min-h-screen flex items-start justify-center p-4 py-8">
-            <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto my-8">
-                <div class="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between rounded-t-2xl">
-                    <h3 class="text-2xl font-bold text-gray-800">Student Admission Application</h3>
-                    <button onclick="closeApplicationModal()" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <form id="application-form" class="p-6 space-y-6">
-                    <!-- Student Information -->
-                    <div class="bg-red-50 p-4 rounded-xl">
-                        <h4 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-child mr-2 text-red-500"></i>Student Information</h4>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Full Name *</label>
-                                <input type="text" name="studentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Enter student's full name">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Date of Birth *</label>
-                                <input type="date" name="dateOfBirth" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Gender *</label>
-                                <select name="gender" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Grade/Class Applying For *</label>
-                                <select name="grade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                                    <option value="">Select Grade</option>
-                                    <option value="Play Group">Play Group</option>
-                                    <option value="Nursery 1">Nursery 1</option>
-                                    <option value="Nursery 2">Nursery 2</option>
-                                    <option value="P1">Primary 1</option>
-                                    <option value="P2">Primary 2</option>
-                                    <option value="P3">Primary 3</option>
-                                    <option value="P4">Primary 4</option>
-                                    <option value="P5">Primary 5</option>
-                                    <option value="P6">Primary 6</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Parent/Guardian Information -->
-                    <div class="bg-orange-50 p-4 rounded-xl">
-                        <h4 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-user mr-2 text-orange-500"></i>Parent/Guardian Information</h4>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Parent/Guardian Name *</label>
-                                <input type="text" name="parentName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Enter parent/guardian name">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Phone Number *</label>
-                                <input type="tel" name="parentPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="+250 XXX XXX XXX">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Email Address *</label>
-                                <input type="email" name="parentEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="email@example.com">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Relationship to Student *</label>
-                                <select name="relationship" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                                    <option value="">Select Relationship</option>
-                                    <option value="Father">Father</option>
-                                    <option value="Mother">Mother</option>
-                                    <option value="Guardian">Guardian</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Address Information -->
-                    <div class="bg-blue-50 p-4 rounded-xl">
-                        <h4 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-home mr-2 text-blue-500"></i>Address Information</h4>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Physical Address *</label>
-                                <input type="text" name="address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your address">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">District *</label>
-                                <select name="district" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="">Select District</option>
-                                    <option value="Musanze">Musanze</option>
-                                    <option value="Rubavu">Rubavu</option>
-                                    <option value="Nyabihu">Nyabihu</option>
-                                    <option value="Rutsiro">Rutsiro</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Additional Information -->
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <h4 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-info-circle mr-2 text-green-500"></i>Additional Information</h4>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">Previous School (if any)</label>
-                                <input type="text" name="previousSchool" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Name of previous school">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 font-medium mb-2">How did you hear about us?</label>
-                                <select name="howHeard" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                                    <option value="">Select an option</option>
-                                    <option value="Social Media">Social Media</option>
-                                    <option value="Friend/Family">Friend/Family</option>
-                                    <option value="Website">Website</option>
-                                    <option value="School Visit">School Visit</option>
-                                    <option value="Advertisement">Advertisement</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-gray-700 font-medium mb-2">Any Special Needs or Allergies?</label>
-                                <textarea name="specialNeeds" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Please mention any allergies, medical conditions, or special requirements..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <input type="checkbox" id="terms" required class="mt-1 mr-3">
-                        <label for="terms" class="text-gray-600 text-sm">I confirm that all information provided is accurate and I agree to the school's terms and conditions.</label>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-red-500 text-white py-4 rounded-xl font-semibold hover:bg-red-600 transition-all">
-                        <i class="fas fa-paper-plane mr-2"></i>Submit Application
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center">
-        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
-            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-check text-green-500 text-4xl"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">Application Submitted!</h3>
-            <p class="text-gray-600 mb-4">Thank you for applying to United School. We have received your application and will review it shortly. You will receive an email confirmation soon.</p>
-            <button onclick="closeSuccessModal()" class="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition-all">
-                OK
-            </button>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">United School</h3>
-                    <p class="text-gray-400">Nurturing young minds for a bright future in Musanze, Rwanda.</p>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">United School</h3>
+                            <p class="text-sm text-gray-400">Musanze, Rwanda</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Nurturing young minds for a bright future.</p>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="academics.html" class="text-gray-400 hover:text-white">Programs</a></li>
-                        <li><a href="admissions.html" class="text-gray-400 hover:text-white">Admissions</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="home.html" class="hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                        <li><a href="admissions.html" class="hover:text-white">Admissions</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4">Contact</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Musanze, Rwanda</li>
-                        <li><i class="fas fa-phone mr-2"></i>+250 788 123 456</li>
+                        <li><i class="fas fa-phone mr-2"></i>+250 788 863 500</li>
                         <li><i class="fas fa-envelope mr-2"></i>info@unitedschool.rw</li>
+                        <li><i class="fas fa-map-marker mr-2"></i>Musanze, Rwanda</li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-all">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -899,156 +437,39 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Mobile Menu Toggle
         document.getElementById('menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // FAQ toggle
-        function toggleFaq(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('.fa-chevron-down');
-            content.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-        }
-
-        // Application Modal
-        function openApplicationModal() {
-            document.getElementById('application-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeApplicationModal() {
-            document.getElementById('application-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('success-modal').classList.add('hidden');
-            closeApplicationModal();
-        }
-
-        // Check Application Status - using localStorage for GitHub Pages
-        async function checkApplicationStatus() {
-            const email = document.getElementById('track-email').value.trim();
-            const phone = document.getElementById('track-phone').value.trim();
-            
-            if (!email || !phone) {
-                alert('Please enter both email and phone number');
-                return;
-            }
-            
-            try {
-                // Get applications from localStorage
-                const applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
-                
-                // Find matching application
-                const application = applications.find(app => 
-                    app.parentEmail && app.parentEmail.toLowerCase() === email.toLowerCase() && 
-                    app.parentPhone && app.parentPhone.includes(phone)
-                );
-                
-                if (application) {
-                    displayApplicationStatus(application);
-                } else {
-                    alert('No application found with these details. Please check your email and phone number.');
-                    document.getElementById('status-result').classList.add('hidden');
+        // Fade-in Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Unable to check status. Please try again later.');
-            }
-        }
+            });
+        }, { threshold: 0.1 });
 
-        function displayApplicationStatus(application) {
-            const statusResult = document.getElementById('status-result');
-            const statusIcon = document.getElementById('status-icon');
-            const statusTitle = document.getElementById('status-title');
-            const statusBadge = document.getElementById('status-badge');
-            const adminNotesSection = document.getElementById('admin-notes-section');
-            const rejectionReasonSection = document.getElementById('rejection-reason-section');
-            
-            document.getElementById('status-student-name').textContent = application.studentName;
-            document.getElementById('status-grade').textContent = application.grade;
-            document.getElementById('status-date').textContent = new Date(application.createdAt).toLocaleDateString();
-            document.getElementById('status-notes').textContent = application.adminNotes || 'No notes';
-            document.getElementById('status-reason').textContent = application.rejectionReason || 'No reason provided';
-            
-            // Status styling
-            if (application.status === 'pending') {
-                statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-yellow-100';
-                statusIcon.innerHTML = '<i class="fas fa-clock text-yellow-500 text-3xl"></i>';
-                statusTitle.textContent = 'Application Under Review';
-                statusBadge.className = 'font-semibold bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full';
-                statusBadge.textContent = 'Pending';
-                adminNotesSection.classList.add('hidden');
-                rejectionReasonSection.classList.add('hidden');
-            } else if (application.status === 'approved') {
-                statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100';
-                statusIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-3xl"></i>';
-                statusTitle.textContent = 'Congratulations! Application Approved';
-                statusBadge.className = 'font-semibold bg-green-100 text-green-700 px-4 py-1 rounded-full';
-                statusBadge.textContent = 'Approved';
-                adminNotesSection.classList.remove('hidden');
-                rejectionReasonSection.classList.add('hidden');
-            } else if (application.status === 'rejected') {
-                statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-red-100';
-                statusIcon.innerHTML = '<i class="fas fa-times-circle text-red-500 text-3xl"></i>';
-                statusTitle.textContent = 'Application Not Approved';
-                statusBadge.className = 'font-semibold bg-red-100 text-red-700 px-4 py-1 rounded-full';
-                statusBadge.textContent = 'Rejected';
-                adminNotesSection.classList.remove('hidden');
-                rejectionReasonSection.classList.remove('hidden');
-            }
-            
-            statusResult.classList.remove('hidden');
-            statusResult.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Form submission - using localStorage for GitHub Pages
-        document.getElementById('application-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Add metadata
-            data.createdAt = new Date().toISOString();
-            data.status = 'pending';
-            data.applicationId = 'APP-' + Date.now();
-            
-            try {
-                // Get existing applications from localStorage
-                let applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
-                applications.push(data);
-                localStorage.setItem('schoolApplications', JSON.stringify(applications));
-                
-                this.reset();
-                document.getElementById('success-modal').classList.remove('hidden');
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Something went wrong. Please try again.');
-            }
-        });
-
-        // Three.js Animation - Floating particles
+        // Three.js Animation - Floating Particles
         const canvas = document.getElementById('three-canvas');
         if (canvas) {
             const ctx = canvas.getContext('2d');
-            
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.8;
+            canvas.height = window.innerHeight;
 
             const particles = [];
-            const particleCount = 50;
+            const particleCount = 80;
 
             class Particle {
                 constructor() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
                     this.size = Math.random() * 3 + 1;
-                    this.speedX = Math.random() * 1 - 0.5;
-                    this.speedY = Math.random() * 1 - 0.5;
+                    this.speedX = (Math.random() - 0.5) * 1.5;
+                    this.speedY = (Math.random() - 0.5) * 1.5;
                     this.opacity = Math.random() * 0.5 + 0.2;
                 }
 
@@ -1056,10 +477,8 @@
                     this.x += this.speedX;
                     this.y += this.speedY;
 
-                    if (this.x < 0) this.x = canvas.width;
-                    if (this.x > canvas.width) this.x = 0;
-                    if (this.y < 0) this.y = canvas.height;
-                    if (this.y > canvas.height) this.y = 0;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
                 }
 
                 draw() {
@@ -1070,28 +489,25 @@
                 }
             }
 
-            // Create gradient particles (school colors)
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
 
-            function animateParticles() {
+            function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.draw();
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
                 });
 
-                // Draw connections
                 particles.forEach((p1, i) => {
                     particles.slice(i + 1).forEach(p2 => {
                         const dx = p1.x - p2.x;
                         const dy = p1.y - p2.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < 150) {
-                            ctx.strokeStyle = `rgba(248, 113, 113, ${0.1 * (1 - distance / 150)})`;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.strokeStyle = `rgba(248, 113, 113, ${0.15 * (1 - dist / 150)})`;
                             ctx.lineWidth = 1;
                             ctx.beginPath();
                             ctx.moveTo(p1.x, p1.y);
@@ -1101,38 +517,88 @@
                     });
                 });
 
-                requestAnimationFrame(animateParticles);
+                requestAnimationFrame(animate);
             }
 
-            animateParticles();
+            animate();
 
-            // Handle window resize
             window.addEventListener('resize', () => {
                 canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight * 0.8;
+                canvas.height = window.innerHeight;
             });
         }
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Add fade-in class to sections
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('fade-in');
+        // Form Submission - Store in localStorage
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            data.createdAt = new Date().toISOString();
+            data.status = 'pending';
+            data.applicationId = 'APP-' + Date.now();
+            
+            let applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
+            applications.push(data);
+            localStorage.setItem('schoolApplications', JSON.stringify(applications));
+            
+            this.reset();
+            alert('Application submitted successfully! You will receive a confirmation email shortly. Use your email and phone to track your application status.');
         });
+
+        // Check Application Status
+        function checkApplicationStatus() {
+            const email = document.getElementById('track-email').value.trim();
+            const phone = document.getElementById('track-phone').value.trim();
+            
+            if (!email || !phone) {
+                alert('Please enter both email and phone number');
+                return;
+            }
+            
+            const applications = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
+            const application = applications.find(app => 
+                app.parentEmail && app.parentEmail.toLowerCase() === email.toLowerCase() && 
+                app.parentPhone && app.parentPhone.includes(phone)
+            );
+            
+            if (application) {
+                document.getElementById('status-student-name').textContent = application.studentName;
+                document.getElementById('status-grade').textContent = application.grade;
+                document.getElementById('status-date').textContent = new Date(application.createdAt).toLocaleDateString();
+                
+                const statusBadge = document.getElementById('status-badge');
+                const statusIcon = document.getElementById('status-icon');
+                const statusTitle = document.getElementById('status-title');
+                
+                if (application.status === 'pending') {
+                    statusBadge.className = 'font-semibold bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full';
+                    statusBadge.textContent = 'Pending';
+                    statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-yellow-100';
+                    statusIcon.innerHTML = '<i class="fas fa-clock text-yellow-500 text-3xl"></i>';
+                    statusTitle.textContent = 'Application Under Review';
+                } else if (application.status === 'approved') {
+                    statusBadge.className = 'font-semibold bg-green-100 text-green-700 px-4 py-1 rounded-full';
+                    statusBadge.textContent = 'Approved';
+                    statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100';
+                    statusIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-3xl"></i>';
+                    statusTitle.textContent = 'Congratulations! Application Approved';
+                } else if (application.status === 'rejected') {
+                    statusBadge.className = 'font-semibold bg-red-100 text-red-700 px-4 py-1 rounded-full';
+                    statusBadge.textContent = 'Rejected';
+                    statusIcon.className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-red-100';
+                    statusIcon.innerHTML = '<i class="fas fa-times-circle text-red-500 text-3xl"></i>';
+                    statusTitle.textContent = 'Application Not Approved';
+                }
+                
+                document.getElementById('status-result').classList.remove('hidden');
+                document.getElementById('status-result').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('No application found with these details. Please check your email and phone number.');
+                document.getElementById('status-result').classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
