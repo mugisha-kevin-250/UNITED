@@ -469,27 +469,15 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Try to login with API
-            const result = await apiCall('/auth/login', 'POST', { email: username, password: username });
-            
-            if (result.success && result.data.success) {
-                authToken = result.data.token;
-                localStorage.setItem('adminToken', authToken);
-                localStorage.setItem('adminUser', JSON.stringify({ name: username }));
+            // Accept default admin credentials for demo (works offline on GitHub Pages)
+            if (username === 'admin' && password === 'admin123') {
+                localStorage.setItem('adminToken', 'demo-token');
+                localStorage.setItem('adminUser', JSON.stringify({ name: 'Admin' }));
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('dashboard').classList.remove('hidden');
                 loadAllData();
             } else {
-                // Fallback: accept default admin credentials for demo
-                if (username === 'admin' && password === 'admin123') {
-                    localStorage.setItem('adminToken', 'demo-token');
-                    localStorage.setItem('adminUser', JSON.stringify({ name: 'Admin' }));
-                    document.getElementById('login-screen').classList.add('hidden');
-                    document.getElementById('dashboard').classList.remove('hidden');
-                    loadAllData();
-                } else {
-                    alert('Invalid credentials. Use admin/admin123 for demo mode.');
-                }
+                alert('Invalid credentials. Use admin/admin123 to login.');
             }
         });
 
