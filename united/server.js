@@ -15,6 +15,11 @@ const app = express();
 // Serve static files from pages directory
 app.use(express.static(path.join(__dirname, '../pages')));
 
+// Serve index.html for root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../pages/home.html'));
+});
+
 // Body parser - increased limit for image uploads
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -342,9 +347,14 @@ app.delete('/api/content/:id', async (req, res) => {
     }
 });
 
-// Root route
+// Root route - serve home.html
 app.get('/', (req, res) => {
-    res.send('United School API is running...');
+    res.sendFile(path.join(__dirname, '../pages/home.html'));
+});
+
+// Also handle /index.html
+app.get('/index.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../pages/home.html'));
 });
 
 // Admission Routes
