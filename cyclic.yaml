@@ -1,0 +1,8 @@
+id: united-school-app
+name: UNITED
+# Cyclic will automatically deploy from GitHub when you connect
+# Environment variables can be set in Cyclic dashboard
+build:
+  # Install dependencies and build
+  runtime: nodejs
+  name: united

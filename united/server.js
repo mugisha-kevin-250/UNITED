@@ -5,7 +5,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 
 // Load env vars
-dotenv.config({ path: './.env' });
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 // Connect to database
 connectDB();
@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 // Serve static files from pages directory
-app.use(express.static(path.join(__dirname, '../pages')));
+app.use(express.static(path.join(__dirname, 'pages')));
 
 // Serve index.html for root
 app.get('/', (req, res) => {
@@ -349,12 +349,12 @@ app.delete('/api/content/:id', async (req, res) => {
 
 // Root route - serve home.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages/home.html'));
+    res.sendFile(path.join(__dirname, 'pages/home.html'));
 });
 
 // Also handle /index.html
 app.get('/index.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages/home.html'));
+    res.sendFile(path.join(__dirname, 'pages/home.html'));
 });
 
 // Admission Routes
@@ -533,5 +533,5 @@ app.listen(PORT, () => {
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages/home.html'));
+    res.sendFile(path.join(__dirname, 'pages/home.html'));
 });
