@@ -1,3 +1,12 @@
+# Static Site Configuration
+sites:
+  - type: web
+    name: UNITED
+    buildCommand: # No build command needed for static HTML
+    publishDirectory: pages
+    env: static
+
+# Backend Web Service Configuration  
 services:
   - type: web
     name: school-backend
@@ -12,6 +21,5 @@ services:
       - key: MONGO_URI
         # IMPORTANT: Set your MongoDB Atlas URI in Render dashboard env vars
         # Format: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?options
-        # For local development, create a .env file in united/ directory
       - key: JWT_SECRET
         value: united-school-jwt-secret-2024
