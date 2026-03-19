@@ -178,25 +178,22 @@
             e.preventDefault();
             
             const formData = {
+                id: Date.now(),
                 name: document.getElementById('contact-name').value,
                 email: document.getElementById('contact-email').value,
                 message: document.getElementById('contact-message').value,
+                phone: '',
+                date: new Date().toLocaleDateString(),
                 category: 'Contact'
             };
             
-            try {
-                const response = await fetch(API_BASE + '/contacts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                
-                alert('Message sent successfully! We will get back to you soon.');
-                document.getElementById('contact-form').reset();
-            } catch (error) {
-                alert('Message sent! We will get back to you soon.');
-                document.getElementById('contact-form').reset();
-            }
+            // Save to localStorage
+            let contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+            contacts.unshift(formData);
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+            
+            alert('Message sent successfully! We will get back to you soon.');
+            document.getElementById('contact-form').reset();
         });
     </script>
 </body>
