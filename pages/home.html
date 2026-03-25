@@ -14,6 +14,20 @@
         .nav-link:hover { color: #f87171; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f87171; transition: width 0.3s ease; }
         .nav-link:hover::after { width: 100%; }
+        /* Mobile Nav Links Marquee */
+        .mobile-nav-marquee { overflow: hidden; white-space: nowrap; }
+        .mobile-nav-marquee .nav-track {
+            display: inline-block;
+            animation: scroll-left 15s linear infinite;
+        }
+        .mobile-nav-marquee .nav-track a {
+            display: inline-block;
+            padding: 0 15px;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -43,16 +57,28 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="container mx-auto px-4 py-3 space-y-2">
-                <a href="home.html" class="block py-2 text-gray-700">Home</a>
-                <a href="about.html" class="block py-2 text-gray-700">About Us</a>
-                <a href="academics.html" class="block py-2 text-gray-700">Programs</a>
-                <a href="staff.html" class="block py-2 text-gray-700">Facilities</a>
-                <a href="news.html" class="block py-2 text-gray-700">Gallery</a>
-                <a href="admissions.html" class="block py-2 text-gray-700">Admissions</a>
-                <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
-                <a href="admissions.html" class="block py-2 text-red-500 font-medium">Apply Now</a>
+        <!-- Mobile Nav Links Marquee (under logo) -->
+        <div class="md:hidden bg-white border-t px-2 py-2 overflow-hidden">
+            <div class="mobile-nav-marquee">
+                <div class="nav-track">
+                    <a href="home.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">About</a>
+                    <a href="academics.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Programs</a>
+                    <a href="staff.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Facilities</a>
+                    <a href="news.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Gallery</a>
+                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Admissions</a>
+                    <a href="contact.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Contact</a>
+                    <a href="chat.html" class="nav-link text-red-500 px-3 py-1 text-sm font-medium">Chat</a>
+                    <!-- Duplicate for continuous scroll -->
+                    <a href="home.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">About</a>
+                    <a href="academics.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Programs</a>
+                    <a href="staff.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Facilities</a>
+                    <a href="news.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Gallery</a>
+                    <a href="admissions.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Admissions</a>
+                    <a href="contact.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Contact</a>
+                    <a href="chat.html" class="nav-link text-red-500 px-3 py-1 text-sm font-medium">Chat</a>
+                </div>
             </div>
         </div>
     </header>

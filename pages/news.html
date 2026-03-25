@@ -13,6 +13,20 @@
         .nav-link:hover { color: #f87171; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f87171; transition: width 0.3s ease; }
         .nav-link:hover::after { width: 100%; }
+        /* Mobile Nav Links Marquee */
+        .mobile-nav-marquee { overflow: hidden; white-space: nowrap; }
+        .mobile-nav-marquee .nav-track {
+            display: inline-block;
+            animation: scroll-left 15s linear infinite;
+        }
+        .mobile-nav-marquee .nav-track a {
+            display: inline-block;
+            padding: 0 15px;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -35,6 +49,30 @@
                     <a href="contact.html" class="nav-link text-gray-700 px-3 py-2 font-medium">Contact</a>
                 </nav>
                 <button id="menu-btn" class="md:hidden text-gray-700 p-2"><i class="fas fa-bars"></i></button>
+            </div>
+            <!-- Mobile Nav Links Marquee (under logo) -->
+            <div class="md:hidden bg-white border-t px-2 py-2 overflow-hidden">
+                <div class="mobile-nav-marquee">
+                    <div class="nav-track">
+                        <a href="home.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">About</a>
+                        <a href="academics.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Programs</a>
+                        <a href="staff.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Facilities</a>
+                        <a href="news.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Gallery</a>
+                        <a href="admissions.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Admissions</a>
+                        <a href="contact.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Contact</a>
+                        <a href="chat.html" class="nav-link text-red-500 px-3 py-1 text-sm font-medium">Chat</a>
+                        <!-- Duplicate for continuous scroll -->
+                        <a href="home.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">About</a>
+                        <a href="academics.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Programs</a>
+                        <a href="staff.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Facilities</a>
+                        <a href="news.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Gallery</a>
+                        <a href="admissions.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Admissions</a>
+                        <a href="contact.html" class="nav-link text-gray-700 px-3 py-1 text-sm font-medium">Contact</a>
+                        <a href="chat.html" class="nav-link text-red-500 px-3 py-1 text-sm font-medium">Chat</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
@@ -210,31 +248,58 @@
         });
         
         async function loadNews() {
+            let newsItems = [];
+            
+            // First try to load from localStorage (admin-created news)
+            const localNews = JSON.parse(localStorage.getItem('school_news') || '[]');
+            if (localNews.length > 0) {
+                newsItems = localNews;
+            }
+            
+            // Then try API
             try {
                 const response = await fetch(API_BASE + '/news');
                 const result = await response.json();
                 if (result.success && result.data && result.data.length > 0) {
-                    const newsContainer = document.getElementById('news-container');
-                    let newsHTML = '';
+                    // Merge API news with local news (avoiding duplicates by ID)
+                    const localIds = newsItems.map(n => n.id);
                     result.data.forEach(news => {
-                        const date = new Date(news.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                        const imageUrl = news.image || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80';
-                        newsHTML += `
-                            <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
-                                <img src="${imageUrl}" alt="${news.title}" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <span class="text-red-500 text-sm">${date}</span>
-                                    <h3 class="text-lg font-bold text-gray-800 mt-2">${news.title}</h3>
-                                    <p class="text-gray-500 mt-2">${news.content ? news.content.substring(0, 100) + '...' : 'Click to read more...'}</p>
-                                    <button class="inline-block mt-4 text-red-500 font-medium hover:text-red-600" onclick="openNewsModal('${news._id}', '${news.title.replace(/'/g, "\\'")}', '${news.content ? news.content.replace(/'/g, "\\'").replace(/\n/g, ' ') : ''}', '${date}', '${imageUrl}')">Read More <i class="fas fa-arrow-right ml-1"></i></button>
-                                </div>
-                            </div>
-                        `;
+                        if (!localIds.includes(news._id)) {
+                            newsItems.push({
+                                id: news._id,
+                                title: news.title,
+                                content: news.content,
+                                image: news.image,
+                                date: news.createdAt,
+                                category: news.category
+                            });
+                        }
                     });
-                    newsContainer.innerHTML = newsHTML;
                 }
             } catch (err) {
-                console.log('News loading error:', err);
+                console.log('API not available, using local news only');
+            }
+            
+            // Render news
+            if (newsItems.length > 0) {
+                const newsContainer = document.getElementById('news-container');
+                let newsHTML = '';
+                newsItems.forEach(news => {
+                    const date = news.date ? new Date(news.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Recent';
+                    const imageUrl = news.image || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80';
+                    newsHTML += `
+                        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                            <img src="${imageUrl}" alt="${news.title}" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span class="text-red-500 text-sm">${news.category || 'News'} • ${date}</span>
+                                <h3 class="text-lg font-bold text-gray-800 mt-2">${news.title}</h3>
+                                <p class="text-gray-500 mt-2">${news.content ? news.content.substring(0, 100) + '...' : 'Click to read more...'}</p>
+                                <button class="inline-block mt-4 text-red-500 font-medium hover:text-red-600" onclick="openNewsModal('${news.id}', '${news.title.replace(/'/g, "\\'")}', '${news.content ? news.content.replace(/'/g, "\\'").replace(/\n/g, ' ') : ''}', '${date}', '${imageUrl}')">Read More <i class="fas fa-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+                newsContainer.innerHTML = newsHTML;
             }
         }
 

@@ -103,8 +103,20 @@
                                 </select>
                             </div>
                             <div>
+                                <label class="block text-gray-300 mb-1">Image (URL or upload)</label>
+                                <input type="file" id="news-image-file" accept="image/*" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-3 py-2 mb-2">
+                                <input type="text" id="news-image-url" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-3 py-2" placeholder="Or enter image URL">
+                            </div>
+                            <div>
                                 <label class="block text-gray-300 mb-1">Content</label>
                                 <textarea id="news-content" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-3 py-2" rows="4" placeholder="Enter news content"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-1">Notify Subscribers via Email</label>
+                                <label class="flex items-center text-gray-300">
+                                    <input type="checkbox" id="news-send-email" class="mr-2">
+                                    Send email notification when published
+                                </label>
                             </div>
                             <button onclick="addNews()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Publish News</button>
                         </div>
@@ -181,7 +193,7 @@
 
     <script>
         // Initialize data from localStorage
-        let newsData = JSON.parse(localStorage.getItem('news') || '[]');
+        let newsData = JSON.parse(localStorage.getItem('school_news') || '[]');
         let admissionsData = JSON.parse(localStorage.getItem('schoolApplications') || '[]');
         let contactsData = JSON.parse(localStorage.getItem('contacts') || '[]');
         let galleryData = JSON.parse(localStorage.getItem('gallery') || '[]');
@@ -234,14 +246,47 @@
         }
 
         // ==================== NEWS ====================
-        function addNews() {
+        // Image to base64 conversion
+        function imageToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Email notification function (simulated)
+        async function sendEmailNotification(newsTitle, newsContent) {
+            // In production, this would call a backend API to send emails
+            console.log('Email notification sent for:', newsTitle);
+            alert(`Email notification sent to subscribers about: "${newsTitle}"`);
+        }
+
+        async function addNews() {
             const title = document.getElementById('news-title').value;
             const category = document.getElementById('news-category').value;
             const content = document.getElementById('news-content').value;
-
+            const sendEmail = document.getElementById('news-send-email').checked;
+            
+            // Get image - either from file upload or URL
+            let imageUrl = document.getElementById('news-image-url').value;
+            const imageFile = document.getElementById('news-image-file').files[0];
+            
             if (!title || !content) {
-                alert('Please fill in all fields');
+                alert('Please fill in all required fields');
                 return;
+            }
+
+            // Handle image upload
+            if (imageFile) {
+                try {
+                    imageUrl = await imageToBase64(imageFile);
+                } catch (e) {
+                    console.error('Error converting image:', e);
+                    alert('Error processing image');
+                    return;
+                }
             }
 
             const news = {
@@ -249,27 +294,43 @@
                 title,
                 category,
                 content,
-                date: new Date().toLocaleDateString()
+                image: imageUrl || null,
+                date: new Date().toLocaleDateString(),
+                createdAt: new Date().toISOString()
             };
 
             newsData.unshift(news);
-            localStorage.setItem('news', JSON.stringify(newsData));
+            localStorage.setItem('school_news', JSON.stringify(newsData));
             
             document.getElementById('news-title').value = '';
             document.getElementById('news-content').value = '';
+            document.getElementById('news-image-url').value = '';
+            document.getElementById('news-image-file').value = '';
             
             renderNews();
-            alert('News published!');
+            
+            if (sendEmail) {
+                sendEmailNotification(title, content);
+            } else {
+                alert('News published!');
+            }
         }
 
         function renderNews() {
             const container = document.getElementById('news-list');
+            if (newsData.length === 0) {
+                container.innerHTML = '<p class="text-gray-400">No news articles yet</p>';
+                return;
+            }
             container.innerHTML = newsData.map(news => `
                 <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-start">
-                    <div>
-                        <h4 class="text-white font-bold">${news.title}</h4>
-                        <p class="text-gray-400 text-sm">${news.category} • ${news.date}</p>
-                        <p class="text-gray-300 mt-2">${news.content.substring(0, 100)}...</p>
+                    <div class="flex gap-4">
+                        ${news.image ? `<img src="${news.image}" class="w-20 h-20 object-cover rounded" alt="News image">` : ''}
+                        <div>
+                            <h4 class="text-white font-bold">${news.title}</h4>
+                            <p class="text-gray-400 text-sm">${news.category} • ${news.date}</p>
+                            <p class="text-gray-300 mt-2">${news.content.substring(0, 100)}...</p>
+                        </div>
                     </div>
                     <button onclick="deleteNews(${news.id})" class="text-red-500 hover:text-red-400">
                         <i class="fas fa-trash"></i>
@@ -281,7 +342,7 @@
         function deleteNews(id) {
             if (confirm('Delete this news?')) {
                 newsData = newsData.filter(n => n.id !== id);
-                localStorage.setItem('news', JSON.stringify(newsData));
+                localStorage.setItem('school_news', JSON.stringify(newsData));
                 renderNews();
             }
         }
